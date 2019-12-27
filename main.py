@@ -13,7 +13,6 @@ class MyApp(QMainWindow):
         self.btn.clicked.connect(self.btnReaction)
 
     def btnReaction(self):
-        self.start_draw = 1
         self.update()
 
     def paintEvent(self, *args, **kwargs):
@@ -27,8 +26,9 @@ class MyApp(QMainWindow):
             qp = QPainter()
         qp.setBrush(QColor(255, 255, 0))
         w, h = self.geometry().getRect()[:2]
-        r = 10
-        x, y = random.randrange(r, w - r), random.randrange(r, h - r)
+        r = random.randrange(10, 50)
+        x, y = random.randrange(r, w - r - 20), random.randrange(r, h - r - 20)
+        print(x,y)
         qp.drawEllipse(QPointF(x, y), r, r)
 
 
