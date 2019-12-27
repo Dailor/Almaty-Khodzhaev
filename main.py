@@ -2,14 +2,16 @@ from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtCore import QPointF
 from PyQt5 import uic
+from UI import Ui_MainWindow
 import sys
 import random
 
 
-class MyApp(QMainWindow):
+
+class MyApp(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.btn.clicked.connect(self.btnReaction)
 
     def btnReaction(self):
@@ -24,7 +26,7 @@ class MyApp(QMainWindow):
     def draw_circle(self, qp):
         if False:
             qp = QPainter()
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(*[random.randrange(0,255) for i in range(3)]))
         w, h = self.geometry().getRect()[:2]
         r = random.randrange(10, 50)
         x, y = random.randrange(r, w - r - 20), random.randrange(r, h - r - 20)
